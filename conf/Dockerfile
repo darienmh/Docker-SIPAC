@@ -38,9 +38,8 @@ RUN docker-php-ext-install -j$(nproc) \
 	intl \
 	curl \
 	mcrypt \
-	json \
-	
-	  
+	json
+
 RUN apt-get autoremove -y && apt-get clean all \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
