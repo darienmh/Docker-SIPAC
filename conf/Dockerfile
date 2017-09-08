@@ -16,6 +16,7 @@ RUN apt-get install -y --force-yes \
 	libxslt-dev \
 	libcurl4-openssl-dev \
 	libmcrypt-dev \
+	libicu-dev \
 	wkhtmltopdf
 	
 RUN pecl install xdebug \
