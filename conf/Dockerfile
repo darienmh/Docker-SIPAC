@@ -4,7 +4,8 @@ LABEL maintainer="macias@uci.cu, rmolinet@uci.cu"
 
 ADD wkhtmltopdf /usr/bin/wkhtmltopdf
 
-RUN apt-get update \
+RUN chmod +x /usr/bin/wkhtmltopdf \
+&& apt-get update \
 && apt-get install -y --force-yes --no-install-recommends \
 	libssl-dev \
 	libfreetype6-dev \
