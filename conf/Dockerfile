@@ -3,11 +3,9 @@ FROM php:5-fpm
 LABEL maintainer="macias@uci.cu, rmolinet@uci.cu"
 #FROM nexus.prod.uci.cu/php:5.6-apache
 
-#COPY sources.list /etc/apt/sources.list
-
 RUN apt-get update \
 #RUN apt-get upgrade -y
-&& apt-get install -y --force-yes \
+&& apt-get install -y --force-yes --no-install-recommends \
 	unzip \
 	libssl-dev \
 	libfreetype6-dev \
@@ -46,6 +44,3 @@ RUN apt-get update \
 && apt-get autoremove -y \
 && apt-get clean all \
 && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-
-
