@@ -1,5 +1,33 @@
 version: '2'
 
 services:
-    php:
-        build: .\conf
+    nginx_sipac:
+        image: nexus.prod.uci.cu/nginx:alpine
+        ports:
+            - "80:80"
+            - "443:443"
+        links:
+            - php_sipac:php_sipac
+        volumes:
+            #- ..\..\PhpstormProjects\sipac_2.4:/var/www/html
+            - ./logs/nginx/:/var/log/nginx
+            - ./conf/nginx.conf:/etc/nginx/nginx.conf
+            - ./conf/sipac_2.4.conf:/etc/nginx/conf.d/default.conf
+            - ./conf/nginx.pem:/etc/ssl/certs/nginx.pem
+            - ./conf/nginx.key:/etc/ssl/private/nginx.key
+    php_sipac:
+        image: nexus.prod.uci.cu/darienmh/sipac-nginx
+        volumes:
+            #- ..\..\PhpstormProjects\sipac_2.4:/var/www/html
+            - ./conf/php.ini:/usr/local/etc/php/php.ini
+    postgres_sipac:
+        image: nexus.prod.uci.cu/postgres:alpine
+        ports:
+            - "5432:5432"
+        volumes:
+            - data_postgresql:/var/lib/postgresql/data
+        environment:
+            POSTGRES_PASSWORD: d535e4928584ac2bca68865e6246da4c
+            POSTGRES_USER: postgres
+volumes:
+    data_postgresql:
