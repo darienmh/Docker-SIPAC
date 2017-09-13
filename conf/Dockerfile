@@ -3,9 +3,9 @@ FROM php:5-fpm
 
 #COPY sources.list /etc/apt/sources.list
 
-RUN apt-get update
+RUN apt-get update \
 #RUN apt-get upgrade -y
-RUN apt-get install -y --force-yes \
+&& apt-get install -y --force-yes \
 	unzip \
 	libssl-dev \
 	libfreetype6-dev \
@@ -17,15 +17,15 @@ RUN apt-get install -y --force-yes \
 	libcurl4-openssl-dev \
 	libmcrypt-dev \
 	libicu-dev \
-	wkhtmltopdf
+	wkhtmltopdf \
 	
-RUN pecl install xdebug \
-&& docker-php-ext-enable xdebug
+&& pecl install xdebug \
+&& docker-php-ext-enable xdebug \
 
-RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
-&& docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/
+&& docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+&& docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ \
 
-RUN docker-php-ext-install -j$(nproc) \
+&& docker-php-ext-install -j$(nproc) \
 	pdo \
 	pgsql \
 	pdo_pgsql \
@@ -39,10 +39,11 @@ RUN docker-php-ext-install -j$(nproc) \
 	intl \
 	curl \
 	mcrypt \
-	json
+	json \
 
-RUN apt-get autoremove -y && apt-get clean all \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+&& apt-get autoremove -y \
+&& apt-get clean all \
+&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 
 
