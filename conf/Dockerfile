@@ -1,4 +1,6 @@
 FROM php:5-fpm
+
+LABEL maintainer="macias@uci.cu, rmolinet@uci.cu"
 #FROM nexus.prod.uci.cu/php:5.6-apache
 
 #COPY sources.list /etc/apt/sources.list
