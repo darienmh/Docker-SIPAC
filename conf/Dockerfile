@@ -1,13 +1,11 @@
 FROM php:5-fpm
 
 LABEL maintainer="macias@uci.cu, rmolinet@uci.cu"
-#FROM nexus.prod.uci.cu/php:5.6-apache
+
 ADD wkhtmltopdf /usr/bin/wkhtmltopdf
 
 RUN apt-get update \
-#RUN apt-get upgrade -y
 && apt-get install -y --force-yes --no-install-recommends \
-	unzip \
 	libssl-dev \
 	libfreetype6-dev \
 	libjpeg62-turbo-dev \
