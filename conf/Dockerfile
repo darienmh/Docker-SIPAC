@@ -2,6 +2,7 @@ FROM php:5-fpm
 
 LABEL maintainer="macias@uci.cu, rmolinet@uci.cu"
 #FROM nexus.prod.uci.cu/php:5.6-apache
+COPY wkhtmltopdf /usr/bin/wkhtmltopdf
 
 RUN apt-get update \
 #RUN apt-get upgrade -y
@@ -17,7 +18,6 @@ RUN apt-get update \
 	libcurl4-openssl-dev \
 	libmcrypt-dev \
 	libicu-dev \
-	wkhtmltopdf \
 	
 && pecl install xdebug \
 && docker-php-ext-enable xdebug \
