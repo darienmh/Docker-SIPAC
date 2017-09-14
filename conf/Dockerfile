@@ -17,6 +17,7 @@ RUN chmod +x /usr/bin/wkhtmltopdf \
 	libcurl4-openssl-dev \
 	libmcrypt-dev \
 	libicu-dev \
+	libxrender1 \
 	
 && pecl install xdebug \
 && docker-php-ext-enable xdebug \
