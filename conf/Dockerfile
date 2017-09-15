@@ -20,6 +20,7 @@ RUN chmod +x /usr/bin/wkhtmltopdf \
 	libxrender1 \
     libfontconfig1 \
 	libx11-6 \
+	libxext6 \
 	
 && pecl install xdebug \
 && docker-php-ext-enable xdebug \
