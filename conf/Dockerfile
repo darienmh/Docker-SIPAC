@@ -18,6 +18,7 @@ RUN chmod +x /usr/bin/wkhtmltopdf \
 	libmcrypt-dev \
 	libicu-dev \
 	libxrender1 \
+	libfontconfig1 \
 	
 && pecl install xdebug \
 && docker-php-ext-enable xdebug \
