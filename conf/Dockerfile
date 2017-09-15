@@ -2,7 +2,10 @@ FROM php:5-fpm
 
 LABEL maintainer="macias@uci.cu, rmolinet@uci.cu"
 
-RUN apt-get update \
+ADD wkhtmltopdf /usr/bin/wkhtmltopdf
+
+RUN chmod +x /usr/bin/wkhtmltopdf \
+&& apt-get update \
 && apt-get install -y --force-yes --no-install-recommends \
 	libssl-dev \
 	libfreetype6-dev \
@@ -14,7 +17,9 @@ RUN apt-get update \
 	libcurl4-openssl-dev \
 	libmcrypt-dev \
 	libicu-dev \
-	wkhtmltopdf \
+	libxrender1 \
+    libfontconfig1 \
+	libx11-6 \
 	
 && pecl install xdebug \
 && docker-php-ext-enable xdebug \
@@ -36,11 +41,9 @@ RUN apt-get update \
 	intl \
 	curl \
 	mcrypt \
-	json
+	json \
 
-ADD wkhtmltopdf /usr/bin/wkhtmltopdf
 
-RUN chmod +x /usr/bin/wkhtmltopdf \
 && apt-get autoremove -y \
 && apt-get clean all \
 && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
