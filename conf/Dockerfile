@@ -4,7 +4,7 @@ LABEL maintainer="macias@uci.cu, rmolinet@uci.cu"
 
 ADD wkhtmltopdf /usr/bin/wkhtmltopdf
 
-RUN chmod +x /usr/bin/wkhtmltopdf \
+RUN php -m && chmod +x /usr/bin/wkhtmltopdf \
 && apt-get update \
 && apt-get install -y --force-yes --no-install-recommends \
 	libssl-dev \
