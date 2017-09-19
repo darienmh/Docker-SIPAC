@@ -14,7 +14,6 @@ RUN php -m && chmod +x /usr/bin/wkhtmltopdf \
 	libzip-dev \
 	libldap2-dev \
 	libxslt-dev \
-	libcurl4-openssl-dev \
 	libmcrypt-dev \
 	libicu-dev \
 	libxrender1 \
@@ -29,22 +28,18 @@ RUN php -m && chmod +x /usr/bin/wkhtmltopdf \
 && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu/ \
 
 && docker-php-ext-install -j$(nproc) \
-	pdo \
 	pgsql \
 	pdo_pgsql \
 	soap \
 	gd \
 	bcmath \
-	json \
 	xsl \
 	zip \
 	ldap \
 	intl \
-	curl \
 	mcrypt \
-	json \
 
-
+&& php -m \
 && apt-get autoremove -y \
 && apt-get clean all \
 && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
